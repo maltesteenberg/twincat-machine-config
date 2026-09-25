@@ -1,0 +1,13 @@
+{
+  "machineName": "EXAMPLE-LINE",
+  "vlan": 10,
+  "modbus": {
+    "ip": "0.0.0.0",
+    "port": 502,
+    "unitId": 1
+  },
+  "ams": {
+    "netId": "0.0.0.0.1.1",
+    "port": 851
+  }
+}

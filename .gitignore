@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+MachineConfig/
+**/MachineConfig/
+*.local.json
+modbus.json
+machine.json
+StaticRoutes.xml
+**/_Boot/
+**/bin/
+.DS_Store

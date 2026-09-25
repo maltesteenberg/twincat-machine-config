@@ -1,0 +1,8 @@
+.env
+.env.*
+MachineConfig/
+**/MachineConfig/
+*.local.json
+modbus.json
+machine.json
+StaticRoutes.xml
