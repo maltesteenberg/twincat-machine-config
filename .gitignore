@@ -1,12 +1,47 @@
+# Secrets and injected machine config — never commit.
+# Git only sees files inside this repo. C:\MachineConfig on the IPC is outside
+# the tree; if that folder is ever copied in, the MachineConfig/ rules below apply.
+
+# Local environment. .env.example is the only tracked env file and must stay fictional.
 .env
+**/.env
 .env.*
+**/.env.*
 !.env.example
+!**/.env.example
+
+# Injected JSON (scripts/inject-config.ps1 output and similar dumps)
+machine.json
+**/machine.json
+modbus.json
+**/modbus.json
+*.local.json
+**/*.local.json
+
+# TwinCAT route dumps (real AMS NetIds)
+StaticRoutes.xml
+**/StaticRoutes.xml
+
+# Machine-local config directory if copied into a project or this repo
 MachineConfig/
 **/MachineConfig/
-*.local.json
-modbus.json
-machine.json
-StaticRoutes.xml
+
+# Keys and credential files
+*.pem
+*.key
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+credentials.json
+**/credentials.json
+secrets.json
+**/secrets.json
+*.secret
+
+# TwinCAT build output
 **/_Boot/
 **/bin/
+
 .DS_Store

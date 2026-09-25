@@ -29,6 +29,24 @@ Hard constraints for coding agents (Cursor, Codex, Copilot, etc.).
 | Cursor | `.cursorignore` |
 | Codex  | `.codex/config.toml` permission denials (no `.codexignore`) |
 
+Denied paths (all three tools, as far as each tool can see):
+
+- `.env` and `.env.*` except the tracked fictional `.env.example`
+- Injected `machine.json`, `modbus.json`, `*.local.json`
+- `StaticRoutes.xml` (TwinCAT route dumps)
+- A `MachineConfig/` directory copied into a repo
+- Private keys and credential files (`*.pem`, `*.key`, `*.pfx`, `credentials.json`, `secrets.json`)
+
+Codex also denies the absolute IPC paths `C:\MachineConfig` and `/etc/MachineConfig`. Git and Cursor only match paths inside the workspace, so never copy those directories into the repo. Policy write-up: [SECURITY.md](SECURITY.md).
+
+## Before going public / before publishing
+
+- [ ] Grep the tree and full git history for real IPs and AMS NetIds (expect only `0.0.0.0` and `0.0.0.0.1.1`)
+- [ ] Revoke any leftover tokens (1Password service accounts, `op` sessions, personal access tokens)
+- [ ] Confirm no MachineConfig dumps in the worktree or in git history
+
+Full checklist: [docs/CHECKLIST.md](docs/CHECKLIST.md). Do not change GitHub visibility from an agent session.
+
 ## Human path for inject
 
 ```powershell
@@ -36,4 +54,4 @@ Hard constraints for coding agents (Cursor, Codex, Copilot, etc.).
 # optional: -TemplatePath templates\machine.json.tpl -OutDir C:\MachineConfig -OutName machine.json
 ```
 
-Vault/item/field names in templates are **examples** — rename to match the real 1Password layout.
+Vault/item/field names in templates are **fictional examples** (`Example-Vault` / `example-machine`). Rename them to match the real 1Password layout only on the machine. Do not commit real vault or item names.
