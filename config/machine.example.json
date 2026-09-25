@@ -1,5 +1,5 @@
 {
-  "machineName": "EXAMPLE-LINE",
+  "machineName": "example-machine",
   "vlan": 10,
   "modbus": {
     "ip": "0.0.0.0",

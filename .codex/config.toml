@@ -1,18 +1,32 @@
 # OpenAI Codex has no .codexignore. Deny secret paths via the permission profile.
 # See: https://developers.openai.com/codex/permissions
+# .env.example is a fictional template and is re-opened as read; real .env files stay denied.
+# Absolute MachineConfig paths are outside the git repo (Windows IPC and optional Linux helper).
 default_permissions = "twincat-machine-config"
 
 [permissions.twincat-machine-config]
+description = "Workspace edits with injected machine config and secret files denied."
 extends = ":workspace"
 
 [permissions.twincat-machine-config.filesystem]
 glob_scan_max_depth = 5
+'C:\MachineConfig' = "deny"
+'C:/MachineConfig' = "deny"
+'/etc/MachineConfig' = "deny"
 
 [permissions.twincat-machine-config.filesystem.":workspace_roots"]
 "**/.env" = "deny"
 "**/.env.*" = "deny"
+"**/.env.example" = "read"
 "**/machine.json" = "deny"
 "**/modbus.json" = "deny"
 "**/MachineConfig/**" = "deny"
 "**/StaticRoutes.xml" = "deny"
 "**/*.local.json" = "deny"
+"**/*.pem" = "deny"
+"**/*.key" = "deny"
+"**/*.pfx" = "deny"
+"**/credentials.json" = "deny"
+"**/secrets.json" = "deny"
+"**/id_rsa" = "deny"
+"**/id_ed25519" = "deny"

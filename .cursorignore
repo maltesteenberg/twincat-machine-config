@@ -1,8 +1,31 @@
+# Injected secrets and local config — do not index or read.
+# .env.example is a fictional template and stays visible.
+
 .env
+**/.env
 .env.*
+**/.env.*
+!.env.example
+!**/.env.example
+
+machine.json
+**/machine.json
+modbus.json
+**/modbus.json
+*.local.json
+**/*.local.json
+
+StaticRoutes.xml
+**/StaticRoutes.xml
+
 MachineConfig/
 **/MachineConfig/
-*.local.json
-modbus.json
-machine.json
-StaticRoutes.xml
+
+*.pem
+*.key
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+secrets.json
+*.secret
